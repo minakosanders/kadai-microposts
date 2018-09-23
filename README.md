@@ -30,15 +30,24 @@ _navbar.html.erb
 likes_user_path(current_page)
 <li><%= link_to 'My Favorites', likes_user_path(current_user) %></li>
 
+users.controller.rb
+  def likes
+    @user = User.find(params[:id])
+  end
+
+
 users/show.html.erb
-<%#- クリックしたユーザーのmicropostsを追加 -%>
-<%= render 'microposts', microposts: @user.microposts %>
-or
-<%= render 'microposts', microposts: user.microposts %>
+  <%#- クリックしたユーザーのmicropostsを追加 -%>
+  <%= render 'microposts', microposts: @user.microposts %>
+
+  <%#- また、クリックしたユーザーのfavoriteのタブを追加 -%>
+  <%= link_to 'Favorites', likes_user_path(@user) %>
+
 
 users/likes.html.erb
-<%#- ログインユーザーのmicropostsを追加 -%>
-<%= render 'microposts', microposts: current_user.likes %>
+  <%#- ログインユーザーのmicropostsを追加 -%>
+  <%= render 'microposts', microposts: @user.likes %>
+
 
 microposts/_microposts.html.erb
 like!、unlike!ボタンを追加

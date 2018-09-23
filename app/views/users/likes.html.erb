@@ -1,6 +1,8 @@
   <div class="col-xs-8">
     <ul class="nav nav-tabs nav-justified">
       <li class="<%= 'active' if current_page?(likes_user_path(current_user)) %>"><%= link_to likes_user_path(current_user) do %>Favorites <span class="badge"><% end %></li>
+      
     </ul>
     <%= render 'microposts/microposts', microposts: @likes %>
+    <%#= render 'microposts', microposts: @user.likes %>
   </div>
